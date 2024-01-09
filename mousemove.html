@@ -1,0 +1,321 @@
+<!-- %%%%%%%%%%%%%%%%%% MouseMove - 3d text with trail animation %%%%%%%%%%%%%%%%%% -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MouseMove - 3d text with taril</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+            position: relative;
+        }
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: radial-gradient(#86a7e3,#111);
+            cursor: url(image/favicon-32x32.png), auto;
+        }
+        h2{
+            font-size: 5rem;
+            color: #eee;
+            transform: rotate(-15deg) skew(-10deg);
+            text-align: center;
+            text-shadow: 
+            1px 1px 0 #ccc,
+            2px 2px 0 #ccc,
+            4px 4px 0 #ccc,
+            6px 6px 0 #ccc,
+            10px 10px 20px #00000060;
+        }
+        .trail{
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background-color: #d5e0e7;
+            border-radius: 50%;
+            box-shadow: 0 3px 6px #ffffff33,
+            inset 0 0 3px #aaa,
+            inset 0 0 3px #aaa;
+            animation: animate 3.5s linear forwards;
+        }
+
+        @keyframes animate{
+            0%{
+                transform: scale(0);
+            }
+            10%{
+                transform: scale(1) translateY(0px);
+                opacity: 1;
+            }
+            100%{
+                transform: scale(0) translateY(800px);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>Mousemove Trail <br> Balaguru</h2>
+
+    <script>
+        const body = document.body
+        document.addEventListener("mousemove",(e)=>{
+            const element = document.createElement("div");
+            element.setAttribute("class","trail");
+            element.setAttribute("style",`left : ${e.clientX -10}px;top : ${e.clientY -10}px`);
+
+            element.onanimationend = ()=>{
+                element.remove()
+            }
+
+            body.insertAdjacentElement("beforeend",element)
+        })
+    </script>
+</body>
+</html>
+
+
+<!-- %%%%%%%%%%%%%%%%%% MouseMove - Eyes %%%%%%%%%%%%%%%%%% -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mousemove - Eyes</title>
+
+    <style>
+         *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: radial-gradient(#86a7e3,#296be6);
+            cursor: url(image/favicon-32x32.png), auto;
+        }
+        .box{
+            display: flex;
+        }
+        .box .eye{
+            position: relative;
+            width: 150px;
+            height: 150px;
+            display: block;
+            background-color: white;
+            border-radius: 50%;
+            margin: 30px;
+            box-shadow: 0 5px 45px #00000033,
+            inset 0 0 15px #86a7e3,
+            inset 0 0 25px #86a7e3;
+        }
+
+        .box .eye::before{
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 35px;
+            width: 45px;
+            height: 45px;
+            background-color: #000;
+            transform: translate(-50%,-50%);
+            border-radius: 50%;
+            border: 10px solid #2055b8;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="eye"></div>
+        <div class="eye"></div>
+    </div>
+
+    <script>
+        document.querySelector("body").addEventListener("mousemove",eyeboll)
+
+        function eyeboll(){
+            const eyes = document.querySelectorAll(".eye");
+            eyes.forEach(eye =>{
+                let x = (eye.getBoundingClientRect().left) + (eye.clientWidth / 2)
+                let y = (eye.getBoundingClientRect().top) + (eye.clientHeight / 2);
+
+                let radian = Math.atan2(event.pageX-x,event.pageY - y);
+                let rotation = (radian * (180/Math.PI) * -1) + 270;
+                eye.style.transform = `rotate(${rotation}deg)`
+            })
+        }
+    </script>
+</body>
+</html> -->
+
+
+
+<!-- %%%%%%%%%%%%%%%%%% MouseMove - 2 %%%%%%%%%%%%%%%%%% -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mousemove - with Parallax</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            background-color: #111;
+        }
+        section{
+            position: relative;
+            width: 100%;
+            height: 100dvh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        section img{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        section:hover{
+            cursor: url(image/favicon-32x32.png), auto;
+        }
+
+        section h2{
+            position: relative;
+            font-size: 8rem;
+            color: #1dc7e1;
+            text-shadow: -2px 2px 0 #218fa0,-4px 4px 0 #218fa0,
+            -6px 6px 0 #b42929,-8px 8px 0 #b42929,-10px 10px 0 #8d25ad,
+            -12px 12px 0 #8d25ad,-14px 14px 0 #249756,-16px 16px 0 #249756;
+        }
+
+        p{
+            font-size: 1.5rem;
+            padding: 5rem;
+            color: white;
+            text-align: justify;
+            line-height: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor">B</div>
+    <section class="mainSec">
+        <img src="image/1.png" data-speed="-5" class="layer">
+        <img src="image/2.png" data-speed="-6" class="layer">
+        <img src="image/3.png" data-speed="-7" class="layer">
+        <img src="image/4.png" data-speed="-5" class="layer">
+        <img src="image/5.png" data-speed="-4" class="layer">
+        <img src="image/6.png" data-speed="-3" class="layer">
+        <img src="image/7.png" data-speed="-6" class="layer">
+        <img src="image/8.png" data-speed="-7" class="layer">
+        <img src="image/9.png" data-speed="-4" class="layer">
+        <img src="image/10.png" data-speed="-3" class="layer">
+        <img src="image/11.png" data-speed="-6" class="layer">
+        <img src="image/12.png" data-speed="-7" class="layer">
+        <h2 class="layer" data-speed="-10">Bala Guru</h2>
+    </section>
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi cum quos, quam nostrum ducimus incidunt cumque asperiores cupiditate autem dicta expedita temporibus illo nulla voluptates nisi commodi sapiente nam distinctio in blanditiis sunt deleniti eum dolores voluptatem. Saepe consequuntur similique cumque voluptate quidem voluptatem cupiditate, aliquid laborum velit iure sed. Praesentium enim similique nobis architecto, cum quasi eos, voluptatum fuga libero voluptates optio possimus ab ea quae. Maiores itaque corporis eaque aliquid doloremque quos unde nostrum quaerat natus doloribus, suscipit asperiores cumque quas deserunt excepturi consequatur eveniet saepe magnam in maxime eos? Asperiores in obcaecati corporis esse, officia unde quos id perferendis perspiciatis enim dolore repudiandae expedita repellendus! Laborum molestiae tenetur unde quam voluptatem quis excepturi repellat eius dicta. Possimus ea dignissimos iusto, hic sunt deserunt architecto beatae odio doloremque, ratione dolore. Voluptas eligendi dignissimos sint, quidem ipsa reprehenderit soluta tempore dolor id atque alias quia suscipit provident laboriosam consequuntur beatae odio necessitatibus! Consequuntur animi at earum deserunt voluptatibus repellendus necessitatibus explicabo expedita labore maxime illo fuga tenetur, dolor sapiente nisi, laboriosam provident dolore repellat, consectetur ullam ad placeat aspernatur! Rerum voluptates recusandae sunt, doloremque quod vitae fugit blanditiis possimus ipsa culpa modi impedit quo ea cumque nobis sit reprehenderit earum. Nemo omnis at voluptatum? At nobis ipsum sapiente, harum assumenda in. Mollitia, asperiores ut? Exercitationem accusamus, minus quae ad reiciendis natus quas adipisci quasi autem et, delectus sunt? Voluptate tempore molestiae libero voluptas accusantium officiis atque, facere corrupti perferendis eligendi, voluptatum voluptatibus voluptatem at maiores harum. Quibusdam veniam quo debitis eos sint? Hic veniam voluptates temporibus, dolore iure odio quos impedit necessitatibus. Vero praesentium iusto nam at, nulla voluptate suscipit adipisci id sint sapiente in deleniti corporis corrupti possimus delectus nesciunt accusantium ex facere eos, illum nobis repellendus, mollitia eum. Est iusto ullam unde, eaque tempore nemo dolor consectetur illo quae excepturi error, voluptas quasi explicabo hic quaerat obcaecati esse alias veritatis laboriosam necessitatibus expedita perspiciatis numquam voluptatum quis. Esse maxime sunt possimus quos aspernatur nemo, nobis adipisci distinctio harum eveniet totam deserunt, placeat dolore, magni commodi voluptate ab inventore autem atque ex! Expedita laudantium repudiandae deserunt quis inventore eaque impedit eos doloremque quo culpa saepe sed placeat, reprehenderit quod recusandae laboriosam illo esse doloribus veritatis natus? Minus delectus voluptatibus quisquam. Ab qui libero quasi iusto voluptatibus illum aperiam voluptatem id sequi nihil, doloremque repellendus commodi nam officia nulla facilis ducimus magni delectus. Corrupti delectus commodi eligendi nisi in quas praesentium, fugit amet saepe assumenda reprehenderit, dignissimos inventore maxime impedit voluptatem culpa expedita excepturi ullam atque dolorem voluptate. Adipisci aliquid magnam id quaerat ipsum dolorum in perferendis, nisi quidem natus sapiente eligendi nulla ad voluptate molestias iure architecto optio. Asperiores, corrupti officia obcaecati repellendus itaque nesciunt quaerat cupiditate quo possimus facere dolorem, harum velit nam minus dolor et magni? Labore fugit, corrupti, veniam esse neque ipsum explicabo aperiam culpa tenetur corporis consequatur. Error ipsum eos doloribus, praesentium doloremque illo fuga laborum, ex sit culpa incidunt. Numquam iste tempora fuga reiciendis et, laudantium possimus, animi, dolores quae expedita vero rem!</p>
+    <script>
+
+        // Mouse Move with image change
+        const section = document.querySelector(".mainSec")
+        section.addEventListener("mousemove",parallax);
+        function parallax(e){
+            console.log(this)
+            this.querySelectorAll(".layer").forEach(layer=>{
+                const speed = layer.getAttribute("data-speed");
+
+                const x = (window.innerWidth - e.pageX*speed)/100
+                const y = (window.innerHeight - e.pageY*speed)/100
+
+                layer.style.transform = `translateX(${x}px) translateY(${y}px)`
+            })
+        }
+
+    </script>
+</body>
+</html> -->
+
+
+
+<!-- %%%%%%%%%%%%%%%%%% MouseMove - 1 %%%%%%%%%%%%%%%%%% -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MouseMove - 1</title>
+
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background-color: black;
+        }
+        .box:hover{
+            background-color: red;
+            border-radius: 50%;
+        }
+        .cursor{
+            height: 30px;
+            width: 30px;
+            background-color:rgb(51, 94, 236);
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            position: absolute;
+            transform: translate(-50%,-50%);
+            cursor: none;
+
+            animation: animate 4s linear infinite;
+        }
+
+        @keyframes animate{
+            0%{
+                filter: hue-rotate(0deg);
+            }
+            100%{
+                filter: hue-rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div onclick="alert('Hello i am a black box')" class="box"></div>
+    <div class="cursor">B</div>
+
+    <script>
+        const cursor = document.querySelector(".cursor");
+
+        window.onmousemove = (e) =>{
+            cursor.style.top = e.clientY + "px"
+            cursor.style.left = e.clientX + "px"
+        }
+    </script>
+</body>
+</html> -->

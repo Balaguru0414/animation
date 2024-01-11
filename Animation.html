@@ -1,5 +1,5 @@
 <!-- %%%%%%%%%%%%%%%%%%  3d img Cats %%%%%%%%%%%%%%%%%% -->
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -99,7 +99,7 @@
         </div>         
     </div>   
 </body>
-</html>
+</html> -->
 
 
 <!-- %%%%%%%%%%%%%%%%%%  3d Book %%%%%%%%%%%%%%%%%% -->
@@ -181,6 +181,205 @@
     </div>
 </body>
 </html> -->
+
+
+<!-- %%%%%%%%%%%%%%%%%%  Animation - Scroll-Bar %%%%%%%%%%%%%%%%%% -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation - Scroll-Bar</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            /* color: white; */
+            line-height: 30px;
+            text-align: center;
+            /* padding: 5rem; */
+            font-family: sans-serif;  
+            /* text-shadow: 1px 1px 10px rgba(0,0,0,.5),
+            3px 3px 10px rgba(0,0,0,.5),
+            5px 5px 10px rgba(0,0,0,.5),
+            7px 7px 10px rgba(0,0,0,.5),
+            9px 9px 10px rgba(0,0,0,.5);           */
+            /* background: linear-gradient(to top  left,blue,green,red); */
+            background: #bbb;
+            overflow-x: hidden;
+        }
+        .h1{
+            padding: 5rem;
+            line-height: 3rem;
+        }
+       
+        ::-webkit-scrollbar{
+            max-width: 15px;
+        }
+        ::-webkit-scrollbar-track{
+            background: linear-gradient(to bottom,red,blue);
+        }
+        ::-webkit-scrollbar-thumb{
+            background: linear-gradient(to bottom,white,black);
+            border-radius: 10px 0 0 10px;
+        }
+
+        /* scroll-watch */
+        .container{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+
+            margin: 5rem 0;
+        }
+
+        .box{
+            width: 600px;
+            height: 400px;
+            border: 2px solid white;
+            border-radius: 15px;
+            overflow: auto;
+            margin: 1rem 0;
+        }
+        .box::-webkit-scrollbar{
+            visibility: hidden;
+        }
+        .box::-webkit-scrollbar-track{
+            background: transparent;
+        }
+        .box::-webkit-scrollbar-thumb{
+            background: #111;
+            border-radius: 10px;
+        }
+
+        /* scroll-watch */
+        .scroll-watch{
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(to left, blue ,red);
+            z-index: 1000;
+            box-shadow: 0 2px 2px rgba(0,0,0,.5);
+            animation: scroll-watcher linear;
+            transform-origin: left;
+            scale: 0 1;
+            animation-timeline: scroll();
+        }
+
+        @keyframes scroll-watcher{
+            100%{
+                scale: 1 1;
+            }
+        }
+
+        /* image view animation with scroll */
+        @media(prefers-reduced-motion : no-preference){
+            .endImamge img {
+                scale: .5;
+                opacity: .5;
+                animation: imageScroll linear forwards;
+                animation-timeline: view();
+                /* animation-range: 100px 300px; */
+                animation-range: entry; /* exit,entry,contain,cover, px */
+            }
+            @keyframes imageScroll{
+                100%{
+                    scale: 1 ;
+                    opacity: 1;
+                }
+            }
+        }
+
+        /* Header animation scale and fade out */
+        .header{
+            width: 100vw;
+            min-height: 100vh;
+            max-height: 100vh;
+            line-height: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .header-content{
+            width: 100%;
+            height: 100%;
+            position: relative;
+            color: white;
+            scale: 1;
+            opacity: 1;
+
+            animation: fade-out linear;
+            animation-timeline: view() ;
+            /* animation-range: exit -200px; */
+        }
+
+
+        .header-content > img{
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            top: 0;
+            left: 0;
+        }
+        .header-content > div{
+            position: absolute;
+            transform: translate(50%,100%);
+        }
+        
+        @keyframes fade-out{
+            to{
+                opacity: 0;
+                scale: 2;
+            }
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div class="scroll-watch"></div>
+
+    <div class="header">
+        <div class="header-content">
+            <img src="https://images.pexels.com/photos/417192/pexels-photo-417192.jpeg?" alt="">
+            <div>
+                <h1>Lorem ipsum dolor sit amet consectetur <br> adipisicing elit. Dolor, at.</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br>Corrupti voluptatum error fugit nobis explicabo quaerat vitae aspernatur, cupiditate modi similique?</p>
+            </div>
+        </div>
+    </div>
+    <h1 style="z-index: 1000;" class="h1">SCROLL BAR</h1>
+    <iframe width="49.5%" height="350px" src="https://www.youtube.com/embed/UmzFk68Bwdk" title="Incredible scroll-based animations with CSS-only" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="49.5%" height="350px" src="https://www.youtube.com/embed/JD4Yd7gRvoY" title="Amazing scrollbar in div ( html and css only )" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <div class="container">
+        <div class="box box1">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam at in deleniti porro nesciunt qui rerum molestias quibusdam, facilis quas iure sint, adipisci, error perspiciatis labore accusamus quis ducimus reiciendis. Quam atque nam amet quia et, laboriosam esse est. Fugit commodi pariatur, totam aliquam ipsum, consectetur, inventore deleniti quod eum cumque dolorum mollitia odio. Quod ducimus similique ex odit omnis nesciunt excepturi iste quis quisquam perspiciatis exercitationem incidunt ipsam dolor accusamus explicabo, obcaecati odio, dicta, culpa nulla fugit impedit est vero expedita? Velit sed modi deserunt ipsam molestiae reprehenderit a iste soluta cupiditate molestias ullam voluptas earum amet vero non minus perferendis, possimus corporis magni illo quae cumque inventore. Eos ex repellat blanditiis aliquam unde molestias sunt consequatur similique aut expedita soluta vero, incidunt tempore autem ad numquam facere neque quod quaerat, fugit suscipit aspernatur eaque. Tenetur, necessitatibus. Excepturi, accusantium voluptate! Ipsam suscipit minus itaque tempore iusto a cupiditate, quis assumenda delectus cumque illum ullam voluptas natus adipisci quasi. Beatae, suscipit maxime sunt, possimus natus debitis voluptas, at aliquid reprehenderit assumenda itaque nulla expedita mollitia molestiae quo esse est! Enim dignissimos explicabo numquam asperiores autem hic vitae nostrum, laborum illo veniam unde fugiat. Porro adipisci dolores qui, necessitatibus labore atque.</p>
+        </div>
+        <div class="box box2">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam at in deleniti porro nesciunt qui rerum molestias quibusdam, facilis quas iure sint, adipisci, error perspiciatis labore accusamus quis ducimus reiciendis. Quam atque nam amet quia et, laboriosam esse est. Fugit commodi pariatur, totam aliquam ipsum, consectetur, inventore deleniti quod eum cumque dolorum mollitia odio. Quod ducimus similique ex odit omnis nesciunt excepturi iste quis quisquam perspiciatis exercitationem incidunt ipsam dolor accusamus explicabo, obcaecati odio, dicta, culpa nulla fugit impedit est vero expedita? Velit sed modi deserunt ipsam molestiae reprehenderit a iste soluta cupiditate molestias ullam voluptas earum amet vero non minus perferendis, possimus corporis magni illo quae cumque inventore. Eos ex repellat blanditiis aliquam unde molestias sunt consequatur similique aut expedita soluta vero, incidunt tempore autem ad numquam facere neque quod quaerat, fugit suscipit aspernatur eaque. Tenetur, necessitatibus. Excepturi, accusantium voluptate! Ipsam suscipit minus itaque tempore iusto a cupiditate, quis assumenda delectus cumque illum ullam voluptas natus adipisci quasi. Beatae, suscipit maxime sunt, possimus natus debitis voluptas, at aliquid reprehenderit assumenda itaque nulla expedita mollitia molestiae quo esse est! Enim dignissimos explicabo numquam asperiores autem hic vitae nostrum, laborum illo veniam unde fugiat. Porro adipisci dolores qui, necessitatibus labore atque.</p>
+        </div>
+    </div>
+
+
+    <div class="endImamge">
+        <img src="https://images.pexels.com/photos/17867764/pexels-photo-17867764/free-photo-of-deer-on-grassland.jpeg?w=500" alt="">
+        <h1 class="h1">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae, possimus eos! Delectus dicta reprehenderit exercitationem provident molestiae? Expedita, labore iusto.</h1>
+    
+        <img src="https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?w=500" alt="">
+        <h1 class="h1">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae, possimus eos! Delectus dicta reprehenderit exercitationem provident molestiae? Expedita, labore iusto.</h1>
+    
+        <img src="https://images.pexels.com/photos/1346086/pexels-photo-1346086.jpeg?w=500" alt="">     
+        <h1 class="h1">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae, possimus eos! Delectus dicta reprehenderit exercitationem provident molestiae? Expedita, labore iusto.</h1>
+    
+    </div>
+
+</body>
+</html>
 
 
 <!-- %%%%%%%%%%%%%%%%%% Animation - 3d Image %%%%%%%%%%%%%%%%%% -->
